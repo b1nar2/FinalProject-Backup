@@ -1,0 +1,44 @@
+생성,수정한 패키지 및 파일
+
+com.gym.domain.message
+ㄴMessage.java
+ㄴMessageCreateRequest.java
+ㄴMessageResponse.java
+
+
+com.gym.domain.closedday
+ㄴClosedDay.java
+ㄴClosedDaySendRequest.java
+ㄴClosedDayResponse.java
+
+
+[ MyBatisConfig.java 파일 27번째 줄    "com.gym.mapper.annotation" ==> "com.gym.mapper" 변경
+com.gym.mapper                               // 패키지명 변경 com.gym.mapper.annotation -> com.gym.mapper
+ㄴClosedDayMapper.java (인터페이스)
+ㄴMessageMapper.java (인터페이스)
+
+
+com.gym.controller.user
+ㄴClosedDayController.java
+ㄴMessageController.java
+
+
+com.gym.service					// 패키지 추가
+ㄴClosedDayService.java(인터페이스)
+ㄴMessageService.java(인터페이스)
+
+
+com.gym.service.impl				// 패키지 추가
+ㄴClosedDayServiceImpl.java
+ㄴMessageServiceImpl.java
+
+
+리소스/mappers
+ㄴClosedDayMapper.xml
+ㄴMessageMapper.xml
+
+
+++ SecurityConfig.java 파일 내에 추가
+"/api/closed-days",					// 휴무일 등록/조회 임시 허용
+"/api/messages/send",				// 메시지 임시 허용
+"/api/closed-days/**"				// 휴무일 삭제 임시허용
