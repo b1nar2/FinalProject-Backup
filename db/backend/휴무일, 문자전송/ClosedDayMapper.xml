@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gym.mapper.ClosedDayMapper">
+
+  <resultMap id="ClosedDayResultMap" type="com.gym.domain.closedday.ClosedDayResponse">
+    <id property="closedId" column="closed_id"/>
+    <result property="facilityId" column="facility_id"/>
+    <result property="facilityName" column="facility_name"/>
+    <result property="closedDate" column="closed_date"/>
+    <result property="closedContent" column="closed_content"/>
+  </resultMap>
+
+  <!-- 휴무일 등록 -->
+	<insert id="insertClosedDay" parameterType="com.gym.domain.closedday.ClosedDay">
+	  INSERT INTO closed_day_tbl
+	    (closed_id, facility_id, closed_date, closed_content)
+	  VALUES
+	    (#{closedId}, #{facilityId}, #{closedDate}, #{closedContent})
+	</insert>
+
+
+  <!-- 시설별 휴무일 목록 조회 -->
+  <select id="selectClosedDaysByFacility" resultMap="ClosedDayResultMap" parameterType="map">
+    SELECT c.closed_id, c.facility_id, f.facility_name, c.closed_date, c.closed_content
+    FROM closed_day_tbl c
+    JOIN facility_tbl f ON c.facility_id = f.facility_id
+    WHERE c.facility_id = #{facilityId}
+      AND c.closed_date BETWEEN #{fromDate} AND #{toDate}
+    ORDER BY c.closed_date ASC
+  </select>
+
+  <!-- 휴무일 단건 조회 -->
+  <select id="selectClosedDayById" resultMap="ClosedDayResultMap" parameterType="long">
+    SELECT c.closed_id, c.facility_id, f.facility_name, c.closed_date, c.closed_content
+    FROM closed_day_tbl c
+    JOIN facility_tbl f ON c.facility_id = f.facility_id
+    WHERE c.closed_id = #{closedId}
+  </select>
+
+  <!-- 휴무일 삭제 -->
+  <delete id="deleteClosedDayById" parameterType="long">
+    DELETE FROM closed_day_tbl WHERE closed_id = #{closedId}
+  </delete>
+  
+
+  <!-- 휴무일 존재 여부 확인 -->
+  <select id="existsClosedDayById" resultType="boolean" parameterType="long">
+    SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END FROM closed_day_tbl WHERE closed_id = #{closedId}
+  </select>
+
+  <!-- 특정 날짜 휴무일 확인 -->
+  <select id="existsClosedDayByDate" resultType="boolean" parameterType="map">
+    SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END
+    FROM closed_day_tbl
+    WHERE facility_id = #{facilityId}
+      AND closed_date = #{closedDate}
+  </select>
+
+</mapper>
