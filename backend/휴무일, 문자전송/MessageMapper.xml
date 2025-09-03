@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gym.mapper.MessageMapper">
+<mapper namespace="com.gym.mapper.annotation.MessageMapper">
 
   <resultMap id="MessageResultMap" type="com.gym.domain.message.MessageResponse">
     <id property="messageId" column="message_id"/>

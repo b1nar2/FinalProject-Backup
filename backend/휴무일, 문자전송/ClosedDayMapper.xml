@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gym.mapper.ClosedDayMapper">
+<mapper namespace="com.gym.mapper.annotation.ClosedDayMapper">
 
   <resultMap id="ClosedDayResultMap" type="com.gym.domain.closedday.ClosedDayResponse">
     <id property="closedId" column="closed_id"/>

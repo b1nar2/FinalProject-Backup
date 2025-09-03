@@ -1,4 +1,4 @@
-package com.gym.mapper;
+package com.gym.mapper.annotation;
 
 import com.gym.domain.message.Message;
 import org.apache.ibatis.annotations.Mapper;

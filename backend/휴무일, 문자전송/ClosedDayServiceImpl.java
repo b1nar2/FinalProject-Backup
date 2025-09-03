@@ -2,7 +2,7 @@ package com.gym.service.impl;
 
 import com.gym.domain.closedday.ClosedDay;
 import com.gym.domain.closedday.ClosedDayResponse;
-import com.gym.mapper.ClosedDayMapper;
+import com.gym.mapper.annotation.ClosedDayMapper;
 import com.gym.service.ClosedDayService;
 
 import org.springframework.stereotype.Service;
