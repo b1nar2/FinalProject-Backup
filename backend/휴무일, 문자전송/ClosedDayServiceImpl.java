@@ -11,6 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * 휴무일 관리 서비스 구현체
+ * - 트랜잭션 처리 포함 CRUD 수행
+ */
 @Service
 public class ClosedDayServiceImpl implements ClosedDayService {
 
@@ -24,22 +28,31 @@ public class ClosedDayServiceImpl implements ClosedDayService {
     @Transactional
     public Long createClosedDay(ClosedDay closedDay) {
         closedDayMapper.insertClosedDay(closedDay);
-        return closedDay.getClosedId(); // 시퀀스 생성 후 key 설정 필요
+        // 시퀀스 생성 후 closedDay 객체의 키가 설정되어 있어야 함
+        return closedDay.getClosedId();
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<ClosedDayResponse> findClosedDaysByFacility(Long facilityId, LocalDate fromDate, LocalDate toDate) {
         return closedDayMapper.selectClosedDaysByFacility(facilityId, fromDate, toDate);
-    }    
-    
-    // 삭제 로직 추가    
+    }
+
     @Override
     @Transactional
     public void deleteClosedDayById(Long closedId) {
         int deleted = closedDayMapper.deleteClosedDayById(closedId);
         if (deleted == 0) {
-            throw new RuntimeException("해당 휴무일(ClosedId=" + closedId + ")이 존재하지 않습니다.");  // ← 이렇게 변경
+            throw new RuntimeException("해당 휴무일(ClosedId=" + closedId + ")이 존재하지 않습니다.");
+        }
+    }
+
+    @Override
+    @Transactional
+    public void updateClosedDay(Long closedId, ClosedDay update) {
+        int updated = closedDayMapper.updateClosedDay(closedId, update);
+        if (updated == 0) {
+            throw new RuntimeException("수정할 휴무일이 없습니다. ID=" + closedId);
         }
     }
 }

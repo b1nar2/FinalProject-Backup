@@ -1,0 +1,67 @@
+생성,수정한 패키지 및 파일
+com.gym.domain.message
+┕ Message.java
+┕ MessageCreateRequest.java
+┕ MessageResponse.java
+
+
+com.gym.domain.closedday
+┕ ClosedDay.java
+┕ ClosedDaySendRequest.java
+┕ ClosedDayResponse.java
+
+
+com.gym.domain.post
+┕ Post.java
+┕ PostCreateRequest.java
+┕ PostResponse.java
+
+
+com.gym.domain.comments
+┕ Comments.java
+┕ CommentsCreateRequest.java
+┕ CommentsResponse.java
+
+
+com.gym.mapper
+┕ ClosedDayMapper.java 	(인터페이스)
+┕ MessageMapper.java   	(인터페이스)
+┕ PostMapper.java 	(인터페이스)
+┕ Comments.java		(인터페이스)
+
+
+com.gym.controller.user
+┕ ClosedDayController.java
+┕ MessageController.java
+┕ PostController.java
+┕ CommentsController.java
+
+
+com.gym.service
+┕ ClosedDayService.java	(인터페이스)
+┕ MessageService.java	(인터페이스)
+┕ PostService.java		(인터페이스)
+┕ CommentsService.java	(인터페이스)
+
+
+com.gym.service.impl
+┕ ClosedDayServiceImpl.java
+┕ MessageServiceImpl.java
+┕ PostServiceImpl.java
+┕ CommentsServiceImpl.java
+
+
+리소스/mappers
+┕ ClosedDayMapper.xml
+┕ MessageMapper.xml
+┕ PostMapper.xml
+┕ Comments.xml
+
+
+
+++ SecurityConfig.java 파일 내에 추가
+
+"/api/messages/**",				// 메시지 임시 허용
+"/api/closed-days/**",			// 휴무일 임시 허용
+"/api/boards/*/posts/**",			// 게시글 임시 허용
+"/api/comments/**"			// 댓글 임시 허용
