@@ -1,4 +1,4 @@
-package com.gym.mapper.annotation;
+package com.gym.mapper.xml;
 
 import com.gym.domain.message.Message;
 import com.gym.domain.message.MessageResponse;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gym.mapper.annotation.PostMapper">
+<mapper namespace="com.gym.mapper.xml.PostMapper">
 
   <!-- 결과 매핑: PostResponse DTO에 DB 컬럼을 매핑 -->
   <resultMap id="PostResultMap" type="com.gym.domain.post.PostResponse">
@@ -23,7 +23,7 @@
 <insert id="insertPost" parameterType="com.gym.domain.post.Post" keyProperty="postId">
   <!-- insert 실행 전에 시퀀스 값을 먼저 조회하여 postId 필드에 세팅 -->
   <selectKey keyProperty="postId" resultType="long" order="BEFORE">
-    SELECT seq_post_id.NEXTVAL FROM dual
+    SELECT post_seq.NEXTVAL FROM dual
   </selectKey>
 
   INSERT INTO post_tbl (

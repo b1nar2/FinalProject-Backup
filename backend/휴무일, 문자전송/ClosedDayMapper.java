@@ -1,4 +1,4 @@
-package com.gym.mapper.annotation;
+package com.gym.mapper.xml;
 
 import java.time.LocalDate;
 import java.util.List;

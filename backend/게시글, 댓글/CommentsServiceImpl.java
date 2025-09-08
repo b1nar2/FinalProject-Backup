@@ -3,18 +3,15 @@ package com.gym.service.impl;
 import com.gym.domain.comments.Comments;
 import com.gym.domain.comments.CommentsCreateRequest;
 import com.gym.domain.comments.CommentsResponse;
-import com.gym.mapper.annotation.CommentsMapper;
+import com.gym.mapper.xml.CommentsMapper;
 import com.gym.service.CommentsService;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * 댓글 관련 서비스 구현체
- * - 실제 DB 매퍼를 통해 데이터 처리 수행
- * - 트랜잭션 관리 포함
+ * 댓글 서비스 구현체
  */
 @Service
 public class CommentsServiceImpl implements CommentsService {
@@ -26,8 +23,7 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     /**
-     * 댓글 등록 처리
-     * 요청 DTO -> 엔티티 변환 후 저장
+     * 댓글 등록
      */
     @Override
     @Transactional
@@ -42,8 +38,7 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     /**
-     * 특정 게시글의 댓글 전체 조회
-     * 읽기 전용 트랜잭션으로 수행
+     * 특정 게시글 댓글 전체 조회
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,8 +56,7 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     /**
-     * 회원 소유 검증 후 댓글 수정
-     * 수정 행 수가 0이면 예외 발생
+     * 댓글 수정 (회원 ID와 댓글 ID가 일치해야 수정 가능)
      */
     @Override
     @Transactional
@@ -75,7 +69,6 @@ public class CommentsServiceImpl implements CommentsService {
 
     /**
      * 댓글 삭제
-     * 삭제 행 수가 0이면 예외 발생
      */
     @Override
     @Transactional

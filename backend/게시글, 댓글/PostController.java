@@ -1,10 +1,13 @@
 package com.gym.controller.user;
 
+import com.gym.domain.post.PostCreateRequest;
 import com.gym.domain.post.PostResponse;
 import com.gym.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Builder;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.List;
  * 게시글 관련 REST API 컨트롤러
  * - 게시판별 게시글 조회, 단건 조회, 등록, 수정, 삭제 기능 제공
  */
+@Builder
 @RestController
 @RequestMapping("/api/boards/{boardId}/posts")
 @Tag(name = "Post", description = "게시글 API")
@@ -58,14 +62,30 @@ public class PostController {
      */
     @Operation(summary = "게시글 등록")
     @PostMapping
-    public Long createPost(@PathVariable("boardId") Long boardId, @RequestBody PostResponse postResponse) {
-        // 게시글 등록 시엔 PostCreateRequest DTO 사용하는 게 더 좋으나
-        // 간단히 PostResponse 사용 예시.
-        // boardId 세팅
-        // postResponse.setBoardId(boardId);
-        // 실제 서비스 메서드에 맞춰 DTO 변환 필요할 수 있음
+    public Long createPost(@PathVariable("boardId") Long boardId, @RequestBody PostCreateRequest postCreateRequest) {
+        // pathVariable로 넘어온 boardId를 DTO에 세팅
+        postCreateRequest.setBoardId(boardId);
+
+        // PostCreateRequest -> PostResponse 변환
+        PostResponse postResponse = convertToPostResponse(postCreateRequest);
+
+        // 서비스 호출
         return postService.createPost(postResponse);
     }
+
+    // 변환 메서드는 컨트롤러 내 private 메서드로 추가
+    private PostResponse convertToPostResponse(PostCreateRequest req) {
+        return PostResponse.builder()
+            .boardId(req.getBoardId())
+            .postTitle(req.getPostTitle())
+            .postContent(req.getPostContent())
+            .memberId(req.getMemberId())
+            .postNotice(req.getPostNotice())
+            .postSecret(req.getPostSecret())
+            .postType(req.getPostType())
+            .build();
+    }
+
 
 
     /**

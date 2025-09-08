@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gym.mapper.annotation.ClosedDayMapper">
+<mapper namespace="com.gym.mapper.xml.ClosedDayMapper">
 
   <!-- 휴무일 등록 -->
   <insert id="insertClosedDay" parameterType="com.gym.domain.closedday.ClosedDay">

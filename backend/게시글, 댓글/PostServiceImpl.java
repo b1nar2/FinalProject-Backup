@@ -1,7 +1,7 @@
 package com.gym.service.impl;
 
 import com.gym.domain.post.PostResponse;
-import com.gym.mapper.annotation.PostMapper;
+import com.gym.mapper.xml.PostMapper;
 import com.gym.service.PostService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

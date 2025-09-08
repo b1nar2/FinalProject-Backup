@@ -1,4 +1,4 @@
-package com.gym.mapper.annotation;
+package com.gym.mapper.xml;
 
 import com.gym.domain.post.PostResponse;
 
@@ -31,7 +31,7 @@ public interface PostMapper {
      * @param notice 공지글 필터 여부
      * @return 게시글 목록 리스트
      */
-    List selectPostsByBoard(@Param("boardId") Long boardId,
+    List<PostResponse> selectPostsByBoard(@Param("boardId") Long boardId,
                             @Param("offset") int offset,
                             @Param("limit") int limit,
                             @Param("keyword") String keyword,

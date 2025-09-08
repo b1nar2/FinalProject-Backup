@@ -2,18 +2,15 @@ package com.gym.service.impl;
 
 import com.gym.domain.closedday.ClosedDay;
 import com.gym.domain.closedday.ClosedDayResponse;
-import com.gym.mapper.annotation.ClosedDayMapper;
+import com.gym.mapper.xml.ClosedDayMapper;
 import com.gym.service.ClosedDayService;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.util.List;
 
 /**
- * 휴무일 관리 서비스 구현체
- * - 트랜잭션 처리 포함 CRUD 수행
+ * ClosedDayService 구현체
  */
 @Service
 public class ClosedDayServiceImpl implements ClosedDayService {
@@ -28,8 +25,7 @@ public class ClosedDayServiceImpl implements ClosedDayService {
     @Transactional
     public Long createClosedDay(ClosedDay closedDay) {
         closedDayMapper.insertClosedDay(closedDay);
-        // 시퀀스 생성 후 closedDay 객체의 키가 설정되어 있어야 함
-        return closedDay.getClosedId();
+        return closedDay.getClosedId(); // 시퀀스 생성 후 key 설정 필요
     }
 
     @Override

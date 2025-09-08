@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.gym.mapper.annotation.CommentsMapper">
+<mapper namespace="com.gym.mapper.xml.CommentsMapper">
 
   <!-- 댓글 등록 -->
   <insert id="insertComments" parameterType="com.gym.domain.comments.Comments">

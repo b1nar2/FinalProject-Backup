@@ -2,7 +2,7 @@ package com.gym.service.impl;
 
 import com.gym.domain.message.Message;
 import com.gym.domain.message.MessageResponse;
-import com.gym.mapper.annotation.MessageMapper;
+import com.gym.mapper.xml.MessageMapper;
 import com.gym.service.MessageService;
 
 import org.slf4j.Logger;

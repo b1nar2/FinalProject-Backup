@@ -3,20 +3,18 @@ package com.gym.controller.user;
 import com.gym.domain.comments.CommentsCreateRequest;
 import com.gym.domain.comments.CommentsResponse;
 import com.gym.service.CommentsService;
-
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * 댓글 관련 REST API 컨트롤러
- * - 댓글 등록, 조회, 수정, 삭제 기능 제공
+ * 댓글 API 컨트롤러
+ * 댓글 CRUD 및 검색 기능을 REST API로 제공
  */
 @RestController
 @RequestMapping("/api/comments")
@@ -41,8 +39,8 @@ public class CommentsController {
 
     /**
      * 게시글 댓글 목록 조회 API
-     * @param postId 게시글 ID
-     * @return 댓글 리스트
+     * @param postId 댓글 조회 대상 게시글 ID
+     * @return 댓글 목록
      */
     @Operation(summary = "게시글 댓글 목록 조회", description = "특정 게시글의 댓글 전체를 조회합니다.")
     @GetMapping("/post/{postId}")
@@ -54,8 +52,8 @@ public class CommentsController {
 
     /**
      * 댓글 단건 조회 API
-     * @param commentsId 댓글 ID
-     * @return 댓글 상세 정보 DTO
+     * @param commentsId 조회할 댓글 ID
+     * @return 댓글 상세 DTO
      */
     @Operation(summary = "댓글 단건 조회", description = "댓글 ID로 댓글 하나를 조회합니다.")
     @GetMapping("/{commentsId}")
@@ -66,9 +64,9 @@ public class CommentsController {
     }
 
     /**
-     * 댓글 수정 API (회원 ID + 댓글 ID 기준, 회원 소유 댓글만 수정 가능)
-     * @param memberId 회원 ID
-     * @param commentsId 댓글 ID
+     * 댓글 수정 API (회원 ID+댓글 ID 기준, 회원 소유 댓글만 수정 가능)
+     * @param memberId 수정할 회원 ID
+     * @param commentsId 수정할 댓글 ID
      * @param request 수정 요청 DTO
      */
     @Operation(summary = "회원 ID와 댓글 ID로 댓글 수정", description = "회원 ID와 댓글 ID가 일치하는 댓글을 수정합니다.")

@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class CommentsResponse {
-    private Long commentsId;            /* 댓글 고유 번호(PK) */
-    private Long postId;                /* 관련 게시글(FK) */
-    private String memberId;            /* 댓글 작성한 회원(FK) */
-    private String memberName;          /* 시설명 => closed_day_tbl에는 없음. facility_tbl과 조인 결과로 포함되는 컬럼 */
-    private String content;             /* 댓글 내용 */
-    private LocalDateTime createdAt;    /* 작성일 */
-    private LocalDateTime updatedAt;    /* 수정일 */
+    private Long commentsId;
+    private Long postId;
+    private String memberId;
+    private String memberName;
+    private String content;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
