@@ -83,7 +83,7 @@
         AND (p.post_title LIKE '%' || #{keyword} || '%' OR p.post_content LIKE '%' || #{keyword} || '%')
       </if>
       <if test="notice != null">
-        AND p.post_notice = (CASE WHEN #{notice} THEN 'Y' ELSE 'N' END)
+        AND p.post_notice = #{notice}
       </if>
     ORDER BY p.post_reg_date DESC
     OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY

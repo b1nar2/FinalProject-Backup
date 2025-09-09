@@ -35,12 +35,13 @@ public class PostController {
     @Operation(summary = "게시판별 게시글 목록")
     @GetMapping
     public List<PostResponse> listPosts(@PathVariable("boardId") Long boardId,
-                                        @RequestParam(defaultValue = "1") int page,
-                                        @RequestParam(defaultValue = "10") int size,
-                                        @RequestParam(required = false) String keyword,
-                                        @RequestParam(required = false) Boolean notice) {
+                                       @RequestParam(name = "page", defaultValue = "1") int page,
+                                       @RequestParam(name = "size", defaultValue = "10") int size,
+                                       @RequestParam(name = "keyword", required = false) String keyword,
+                                       @RequestParam(name = "notice", required = false) Boolean notice) {
         return postService.getPostsByBoard(boardId, page, size, keyword, notice);
     }
+
 
 
     /**

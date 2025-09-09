@@ -1,4 +1,5 @@
 생성,수정한 패키지 및 파일
+
 com.gym.domain.message
 ┕ Message.java
 ┕ MessageCreateRequest.java
@@ -23,10 +24,10 @@ com.gym.domain.comments
 ┕ CommentsResponse.java
 
 
-com.gym.mapper
+com.gym.mapper.xml
 ┕ ClosedDayMapper.java 	(인터페이스)
 ┕ MessageMapper.java   	(인터페이스)
-┕ PostMapper.java 	(인터페이스)
+┕ PostMapper.java 		(인터페이스)
 ┕ Comments.java		(인터페이스)
 
 
@@ -62,6 +63,6 @@ com.gym.service.impl
 ++ SecurityConfig.java 파일 내에 추가
 
 "/api/messages/**",				// 메시지 임시 허용
-"/api/closed-days/**",			// 휴무일 임시 허용
+"/api/closed-days/**",				// 휴무일 임시 허용
 "/api/boards/*/posts/**",			// 게시글 임시 허용
-"/api/comments/**"			// 댓글 임시 허용
+"/api/comments/**"				// 댓글 임시 허용

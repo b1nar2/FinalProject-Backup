@@ -32,10 +32,11 @@ public interface PostMapper {
      * @return 게시글 목록 리스트
      */
     List<PostResponse> selectPostsByBoard(@Param("boardId") Long boardId,
-                            @Param("offset") int offset,
-                            @Param("limit") int limit,
-                            @Param("keyword") String keyword,
-                            @Param("notice") Boolean notice);
+								          @Param("offset") int offset,
+								          @Param("limit") int limit,
+								          @Param("keyword") String keyword,
+								          @Param("notice") String notice);
+
 
     /**
      * 게시글 단건 조회

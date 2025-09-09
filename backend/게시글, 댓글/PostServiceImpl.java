@@ -37,8 +37,15 @@ public class PostServiceImpl implements PostService {
     @Transactional(readOnly = true)
     public List<PostResponse> getPostsByBoard(Long boardId, int page, int size, String keyword, Boolean notice) {
         int offset = (page - 1) * size;
-        return postMapper.selectPostsByBoard(boardId, offset, size, keyword, notice);
+
+        String noticeStr = null;
+        if (notice != null) {
+            noticeStr = notice ? "Y" : "N";
+        }
+
+        return postMapper.selectPostsByBoard(boardId, offset, size, keyword, noticeStr);
     }
+
 
     /**
      * 게시글 단건 조회

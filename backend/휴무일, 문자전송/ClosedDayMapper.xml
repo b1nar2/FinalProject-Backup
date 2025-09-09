@@ -5,15 +5,27 @@
 
 <mapper namespace="com.gym.mapper.xml.ClosedDayMapper">
 
-  <!-- 휴무일 등록 -->
+  <!-- 
+    휴무일 등록 쿼리
+    ClosedDay 객체를 parameter로 받아 closed_day_tbl에 insert
+  -->
   <insert id="insertClosedDay" parameterType="com.gym.domain.closedday.ClosedDay">
     INSERT INTO closed_day_tbl (closed_id, facility_id, closed_date, closed_content)
     VALUES (#{closedId}, #{facilityId}, #{closedDate}, #{closedContent})
   </insert>
 
-  <!-- 특정 시설 휴무일 조회 -->
+  <!-- 
+    특정 시설의 휴무일 리스트 조회
+    ClosedDayResponse 타입의 리스트를 반환
+    DB 컬럼명에 대해 자바 필드명과 매핑하기 위한 alias 명시 필수
+  -->
   <select id="selectClosedDaysByFacility" resultType="com.gym.domain.closedday.ClosedDayResponse">
-    SELECT c.closed_id, c.facility_id, f.facility_name, c.closed_date, c.closed_content
+    SELECT
+      c.closed_id AS closedId,
+      c.facility_id AS facilityId,
+      f.facility_name AS facilityName,
+      c.closed_date AS closedDate,
+      c.closed_content AS closedContent
     FROM closed_day_tbl c
     JOIN facility_tbl f ON f.facility_id = c.facility_id
     WHERE c.facility_id = #{facilityId}
@@ -21,15 +33,10 @@
     ORDER BY c.closed_date
   </select>
 
-  <!-- 휴무일 단건 조회 -->
-  <select id="selectClosedDayById" parameterType="long" resultType="com.gym.domain.closedday.ClosedDayResponse">
-    SELECT c.closed_id, c.facility_id, f.facility_name, c.closed_date, c.closed_content
-    FROM closed_day_tbl c
-    JOIN facility_tbl f ON f.facility_id = c.facility_id
-    WHERE c.closed_id = #{closedId}
-  </select>
-
-  <!-- 휴무일 수정 -->
+  <!-- 
+    휴무일 수정
+    parameterType map을 이용해 closedId와 변경 정보 분리
+  -->
   <update id="updateClosedDay" parameterType="map">
     UPDATE closed_day_tbl
     SET facility_id = #{update.facilityId},
@@ -38,7 +45,10 @@
     WHERE closed_id = #{closedId}
   </update>
 
-  <!-- 휴무일 삭제 -->
+  <!-- 
+    휴무일 삭제
+    closed_id 기준 삭제
+  -->
   <delete id="deleteClosedDayById" parameterType="long">
     DELETE FROM closed_day_tbl WHERE closed_id = #{closedId}
   </delete>
