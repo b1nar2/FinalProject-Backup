@@ -1,0 +1,8 @@
+.linklike {
+     cursor: pointer;
+     color: blue;
+}
+
+.linklike:hover {
+    color: green;
+}

@@ -1,0 +1,27 @@
+npm install
+npm install axios react-router-dom
+npm i react-router-dom react-hook-form
+npm i -D msw
+package.json에 "msw:init": "msw init public --save" 스크립트를 추가.
+ex)
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "msw:init": "msw init public --save"  =====> 추가
+  },
+  
+    "dependencies": {
+    "axios": "^1.12.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "react-router-dom": "^7.9.1",
+    "msw": "^2.0.0"  =================> 추가
+  },
+npm run msw:init을 실행해 워커 파일을 생성.
+
+
+
+UI 흐름과 DB 저장용 POST 목까지 동작
